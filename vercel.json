@@ -1,0 +1,22 @@
+{
+    "builds": [{
+        "src": "django_backend/ai_companion/wsgi.py",
+        "use": "@vercel/python",
+        "config": { 
+            "maxLambdaSize": "15mb",
+            "runtime": "python3.12"
+        }
+    }],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "django_backend/ai_companion/wsgi.py"
+        }
+    ],
+    "build": {
+        "env": {
+            "PYTHONPATH": "."
+        }
+    },
+    "buildCommand": "python django_backend/manage.py migrate"
+}
